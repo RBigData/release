@@ -1,0 +1,62 @@
+pbdR packages are released under a variety of licenses.  Generally we try remain
+at least somewhat permissive, but some pbdR packages are derived from other
+less permissively licensed packages.
+
+The individual packages are licensed under the following licenses:
+
+BSD 2-Clause:
+  hpcvis
+  kazaam
+  pbdCS
+  pbdML
+  pbdPROF
+  remoter
+
+BSD 3-Clause:
+  pbdPAPI
+
+GPL >= 2:
+  pbdDMAT
+  pmclust
+
+GPL 3:
+  pbdNCDF4
+  pbdZMQ
+
+MPL 2.0:
+  pbdADIOS
+  pbdBASE
+  pbdDEMO
+  pbdMPI
+  pbdRPC
+  pbdSLAP
+
+Copies of each of these license can be found in the 'licenses/' subtree.
+
+
+
+Additionally, we use several other packages themselves subject to a variety of
+licenses. These licenses are available with their respective source/binary
+distribution(s), but for completeness, we note those here as well.
+
+GPL == 2:
+  ggplot2
+
+GPL >= 2:
+  gridExtra
+  rlecuyer
+
+GPL 3:
+  assertthat
+
+MIT:
+  reshape2
+
+
+
+Finally, we distribute the open source/GNU R implementation of R, which is
+licensed GPL >= 2. If you wish to use a different distribution of R, such as
+Renjin (http://www.renjin.org/) or TERR
+(https://docs.tibco.com/products/tibco-enterprise-runtime-for-r), you are free
+to do so. However, all of our testing has been done on open source R, and all
+of our binary distributions ship open source R.
