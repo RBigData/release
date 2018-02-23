@@ -1,0 +1,43 @@
+pbdR Version {VERSION}, {DATE}
+
+
+
+Introduction
+============
+
+The "Programming with Big Data in R" project (pbdR) is a set of highly scalable
+R packages for distributed computing and profiling in data science.
+
+You can contact the core team at our google group RBigDataProgramming
+(preferred) or alternatively email us at RBigData AT gmail.
+
+For a list of authors and contributors, see the AUTHORS file. For a list of
+copyrights for various packages distributed here, see the COPYING file. For a
+list of support we have received, see the THANKS file.
+
+
+
+Installation
+============
+
+Prerequisites:
+* R >= 3.3.0. The 'remotes' package should be installed 
+  https://cran.r-project.org/web/packages/remotes/index.html
+* An installation of MPI for the MPI packages (which includes some of the
+  profiling and I/O packages as well). We recommend OpenMPI for Linux and Mac,
+  and MS MPI for Windows.
+* An installation of PAPI (with static lib built with -fPIC) if installing the
+  profiling packages.
+* An installation NetCDF4, and a build of ADIOS (with static lib built with
+  -fPIC) if installing the I/O packages.
+
+The packages are split into 4 groups: MPI (including distributed linear algebra
+and statistics packages), COMM for the various client/server infrastructure,
+PROF for the profilers, and IO for the I/O tools. This division of packages is
+not as fine-grained as one could possibly select, but it should be good enough
+for the vast majority.
+
+The complexities of having to pass library paths and various build flags to the
+packages is managed in the 'builder/ENV_VARS' file (which is just an R script).
+Many packages (on most platforms) will install without having to modify this
+file.
