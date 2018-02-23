@@ -1,0 +1,27 @@
+Stable (API unexpected to radically change in the future):
+
+  * pbdBASE {VERSION}
+  * pbdDEMO {VERSION}
+  * pbdDMAT {VERSION}
+  * pbdMPI {VERSION}
+  * pbdNCDF4 {VERSION}
+  * pbdPROF {VERSION}
+  * pbdSLAP {VERSION}
+  * pbdZMQ {VERSION}
+  * pmclust {VERSION}
+
+Maturing (API and features still expected to evolve somewhat):
+
+  * hpcvis {VERSION}
+  * kazaam {VERSION}
+  * pbdML {VERSION}
+  * pbdPAPI {VERSION}
+  * pbdRPC {VERSION}
+  * remoter {VERSION}
+
+Experimental (New packages which are not production quality):
+
+  * pbdADIOS {VERSION}
+  * pbdCS {VERSION}
+  * pbdIO {VERSION}
+  * tasktools {VERSION}
