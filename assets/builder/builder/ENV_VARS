@@ -1,0 +1,24 @@
+### General flags
+lib = ""            # path where packages should be installed
+quiet = TRUE        # set to FALSE to see compiler outputs
+
+
+### MPI packages - NOTE you probably do not need to set these
+mpi.include = ""    # path to mpi.h
+mpi.libpath = ""    # path to libmpi.so
+mpi.type = ""       # OPENMPI, MPICH2, MPICH3, or INTELMPI
+
+
+### PROF packages
+prof.lib = ""       # where to place MPI prof built packages
+mpiP = ""           # path to mpiP build (libmpiP.a needs -fPIC)
+papi.home = ""      # path to PAPI build (libpapi.a needs -fPIC)
+
+
+### COMM packages
+
+
+
+### IO packages
+nc.config = ""      # path to nc-config from netcdf (if missing from path)
+adios.home = ""     # path to the ADIOS build (libadios.a needs -fPIC)
