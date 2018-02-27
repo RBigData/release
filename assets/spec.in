@@ -12,7 +12,7 @@ pbdMPI cran
 pbdNCDF4 cran
 pbdPAPI gh
 pbdPROF gh
-pbdRPC gh
+pbdRPC cran
 pbdSLAP cran
 pbdZMQ cran
 pmclust cran

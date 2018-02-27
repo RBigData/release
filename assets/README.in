@@ -1,26 +1,37 @@
-pbdR Version {VERSION}, {DATE}
+       _         _ ____  
+ _ __ | |__   __| |  _ \ 
+| '_ \| '_ \ / _` | |_) |
+| |_) | |_) | (_| |  _ < 
+| .__/|_.__/ \__,_|_| \_\
+|_|    Version {VERSION}
+
+Released on {DATE}.
 
 
 
 Introduction
 ============
 
-The "Programming with Big Data in R" project (pbdR) is a set of highly scalable
-R packages for distributed computing and profiling in data science.
+The "Programming with Big Data in R" project (pbdR) is a set of R packages for
+HPC. These include highly scalable packages for distributed computing and
+statistics, advanced profiling tools, 
 
 You can contact the core team at our google group RBigDataProgramming
 (preferred) or alternatively email us at RBigData AT gmail.
 
 For a list of authors and contributors, see the AUTHORS file. For a list of
-copyrights for various packages distributed here, see the COPYING file. For a
-list of support we have received, see the THANKS file.
+package versions comprising this release as well as changes over previous
+releases, see the RELEASE file.
 
 
 
 Installation
 ============
 
-Prerequisites:
+We provide docker builds hosted on Docker Hub https://hub.docker.com/u/rbigdata/
+
+To build from source, you will need to satisfy the following prerequisites:
+
 * R >= 3.3.0. The 'remotes' package should be installed 
   https://cran.r-project.org/web/packages/remotes/index.html
 * An installation of MPI for the MPI packages (which includes some of the
@@ -41,3 +52,110 @@ The complexities of having to pass library paths and various build flags to the
 packages is managed in the 'builder/ENV_VARS' file (which is just an R script).
 Many packages (on most platforms) will install without having to modify this
 file.
+
+For more information see https://rbigdata.github.io/packages.html. For
+troubleshooting, see the problem package's vignette.
+
+
+
+Licenses and Copying
+====================
+
+pbdR packages are released under a variety of open source licenses.  Generally
+we try remain at least somewhat permissive, but some pbdR packages are derived
+from other less permissively licensed packages.
+
+The individual packages are licensed under the following licenses:
+
+BSD 2-Clause:
+  hpcvis
+  kazaam
+  pbdCS
+  pbdML
+  pbdPROF
+  remoter
+  tasktools
+
+BSD 3-Clause:
+  pbdPAPI
+
+GPL >= 2:
+  pbdDMAT
+  pmclust
+
+GPL 3:
+  pbdNCDF4
+  pbdZMQ
+
+MPL 2.0:
+  pbdADIOS
+  pbdBASE
+  pbdDEMO
+  pbdMPI
+  pbdRPC
+  pbdSLAP
+
+Copies of each of these license can be found in the 'licenses/' subtree.
+
+Additionally, we use several other packages themselves subject to a variety of
+licenses. If you are using the package builder, it will automatically handle
+dependency resolution, installing these automatically. However, these licenses
+are available with their respective package source/binary distribution(s) on
+CRAN.
+
+Finally, we note that the most common distribution of R is the open source/GNU R
+implementation of R, which is licensed GPL >= 2. If you wish to use a different
+distribution of R, such as Renjin (http://www.renjin.org/) or TERR
+(https://docs.tibco.com/products/tibco-enterprise-runtime-for-r), you are free
+to do so. However, all of our testing has been done on open source R, and all
+of our binary distributions (e.g. Docker images) ship open source R.
+
+Anything distributed in this build without an explicit statement of copyright
+(such as those found in the packages themselves) can be assumed to be BSD
+2-Clause. If you need a more explicit statement of copyright for whatever
+reason, please feel free to contact us.
+
+
+
+Acknowledgements
+================
+
+A special thanks to all of our users.
+
+Grant support 
+
+* Division of Mathematical Sciences, National Science Foundation, Award No.
+  1418195, 2014-2017.
+* Google Summer of Code, 2013-2014.
+* The National Institute for Mathematical and Biological Synthesis, under Award
+  No. EF-0832858 and DBI-1300426, 2013-2014.
+* The Division of Molecular and Cellular Biosciences, National Science
+  Foundation Award MCB-1120370, 2013-2014.
+* The Office of Cyberinfrastructure of the U.S. National Science Foundation
+  under Award No. ARRA-NSF-OCI-0906324 for NICS-RDAV center, 2012-2013.
+* U.S. Department of Energy Office of Science under Contract No.
+  DE-AC05-00OR22725, 2011-2013.
+
+
+Machine support:
+
+This research used resources of the Oak Ridge Leadership Computing Facility at
+the Oak Ridge National Laboratory, which is supported by the Office of Science
+of the U.S. Department of Energy under Contract No. DE-AC05-00OR22725.
+
+The authors acknowledge the Texas Advanced Computing Center (TACC) at The
+University of Texas at Austin for providing HPC resources that have contributed
+to the research results reported within this paper. URL:
+http://www.tacc.utexas.edu
+
+This work used the Extreme Science and Engineering Discovery Environment
+(XSEDE), which is supported by National Science Foundation grant number
+ACI-1053575.
+
+This material is based upon work performed using computational resources
+supported by the University of Tennessee and Oak Ridge National Laboratory's
+Joint Institute for Computational Sciences (http://www.jics.utk.edu). Any
+opinions, findings, and conclusions or recommendations expressed in this
+material are those of the author(s) and do not necessarily reflect the views of
+the University of Tennessee, Oak Ridge National Laboratory, or the Joint
+Institute for Computational Sciences.
