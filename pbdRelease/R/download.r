@@ -12,7 +12,7 @@ check_if_pkg_downloaded = function(dl_path, pkg)
 
 
 
-download_gh = function(dl_path, pkg)
+download_gh = function(root_path, dl_path, pkg)
 {
   need_pkg = !check_if_pkg_downloaded(dl_path, pkg)
   if (!need_pkg)
@@ -32,7 +32,7 @@ download_gh = function(dl_path, pkg)
   tools::Rcmd(paste("build", destdir))
   
   file.remove(destfile)
-  pkg_file = dir(td, pattern="*.tar.gz")
+  pkg_file = dir(root_path, pattern="*.tar.gz")
   file.move(pkg_file, paste0(dl_path, "/", pkg_file))
   unlink(td, recursive=TRUE)
   
@@ -65,7 +65,7 @@ get_packages = function(root_path, release_path)
     download_cran(dl_path, pkg)
   
   for (pkg in pkgs.gh)
-    download_gh(dl_path, pkg)
+    download_gh(root_path, dl_path, pkg)
   
   invisible(TRUE)
 }
