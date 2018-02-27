@@ -18,6 +18,9 @@ setup_release = function(root_path, version, clobber)
   {
     dir.create(release_path, recursive=TRUE)
     dir.create(paste0(release_path, "/src"))
+    dir.create(paste0(release_path, "/licenses"))
+    dir.create(paste0(release_path, "/builder"))
+    dir.create(paste0(release_path, "/docs"))
   }
   
   release_path
@@ -25,25 +28,25 @@ setup_release = function(root_path, version, clobber)
 
 
 
-place_assets = function(root_path, release_path, version, date)
+build_docs = function(root_path, release_path)
 {
-  asset_path = paste0(root_path, "/assets/")
-  d = dir(path=asset_path)
-  assets = d[grep(d, pattern="^((?!.in).)*$", perl=TRUE)]
+  src_path = paste0(release_path, "/src")
+  setwd(src_path)
+  pkgs = dir()
   
-  for (asset in assets)
+  for (pkg in pkgs)
   {
-    file.copy(
-      from=paste0(asset_path, "/", asset),
-      to=paste0(release_path, "/", asset),
-      recursive=TRUE
-    )
+    pkg.name = strsplit(pkg, split="_")[[1]][1]
+    system(paste0("tar zxf ", pkg, " ", pkg.name, "/man"))
+    tools::Rcmd(paste0("Rd2pdf ", pkg.name, " --no-preview -o ", pkg.name, ".pdf"))
   }
   
-  complete_readme(root_path, release_path, version, date)
-  complete_notes(root_path, release_path)
+  system("mv *.pdf ../docs")
+  dirs = setdiff(dir(), pkgs)
+  for (d in dirs)
+    unlink(d, recursive=TRUE)
   
-  TRUE
+  setwd(root_path)
 }
 
 
@@ -59,14 +62,12 @@ complete_readme = function(root_path, release_path, version, date)
   TRUE
 }
 
-
-
 complete_notes = function(root_path, release_path)
 {
   # pkgs = read.table(paste0(root_path, "/assets/spec.in"), sep=" ", header=TRUE, stringsAsFactors=FALSE)$Package
   # versions = lapply(paste0(release_path, "/src/", pkgs), get_version_from_tgz)
   
-  # notes = readLines(paste0(root_path, "/assets/notes.in"))
+  # notes = readLines(paste0(root_path, "/assets/RELEASE.in"))
   
   # for (pkg in pkgs)
   # {
@@ -75,7 +76,27 @@ complete_notes = function(root_path, release_path)
     
   # }
   
-  # cat(notes, file=paste0(release_path, "/NOTES"), sep="\n")
+  # cat(notes, file=paste0(release_path, "/RELEASE"), sep="\n")
+  
+  TRUE
+}
+
+place_assets = function(root_path, release_path, version, date)
+{
+  asset_path = paste0(root_path, "/assets/")
+  d = dir(path=asset_path)
+  assets = d[grep(d, pattern="^((?!.in).)*$", perl=TRUE)]
+  
+  assets_dirs = assets[sapply(d, function(x) file.info(x)$isdir)]
+  assets_files = setdiff(assets, assets_dirs)
+  
+  for (asset in assets_files)
+    file.copy(from=paste0(asset_path, "/", asset), to=paste0(release_path, "/", asset))
+  
+  #TODO
+  
+  complete_readme(root_path, release_path, version, date)
+  complete_notes(root_path, release_path)
   
   TRUE
 }
@@ -130,6 +151,10 @@ make_src_dist = function(path=".", version, date=format(Sys.Date(), "%B %d %Y"),
   
   vprint("getting source packages...", verbose)
   get_packages(root_path, release_path)
+  vprint("ok!\n", verbose)
+  
+  vprint("building documentation...", verbose)
+  build_docs(root_path, release_path)
   vprint("ok!\n", verbose)
   
   # NOTE must come after source packages have been placed

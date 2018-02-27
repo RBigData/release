@@ -29,7 +29,7 @@ download_gh = function(root_path, dl_path, pkg)
   curl::curl_download(tarball_url, destfile=destfile)
   
   system(paste("tar zxf", destfile, "-C", destdir, "--strip-components 1"))
-  tools::Rcmd(paste("build", destdir))
+  tools::Rcmd(paste("build", destdir, "--no-build-vignettes"))
   
   file.remove(destfile)
   pkg_file = dir(root_path, pattern="*.tar.gz")
