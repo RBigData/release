@@ -38,7 +38,7 @@ build_docs = function(root_path, release_path)
   {
     pkg.name = strsplit(pkg, split="_")[[1]][1]
     system(paste0("tar zxf ", pkg, " ", pkg.name, "/man"))
-    tools::Rcmd(paste0("Rd2pdf ", pkg.name, " --no-preview -o ", pkg.name, ".pdf"))
+    tools::Rcmd(paste0("Rd2pdf ", pkg.name, " --title=\"", pkg.name, "\" --no-preview -o ", pkg.name, ".pdf"))
   }
   
   system("mv *.pdf ../docs")
