@@ -14,7 +14,8 @@ Introduction
 
 The "Programming with Big Data in R" project (pbdR) is a set of R packages for
 HPC. These include highly scalable packages for distributed computing and
-statistics, advanced profiling tools, 
+statistics, advanced profiling tools, large scale I/O infrastructure, and
+client/server frameworks.
 
 You can contact the core team at our google group RBigDataProgramming
 (preferred) or alternatively email us at RBigData AT gmail.
