@@ -1,0 +1,11 @@
+Release 0.1-1:
+This release includes some minor fixes and tweaks to the release packaging. The
+package source code is the same as in release 0.1-0.
+  * Moved pbdIO to MPI in build script.
+  * Fixed pbdML build issue.
+  * Fixed RELEASE not being added to the release tarball.
+
+Release 0.1-0:
+This release collects the pbdR packages into a single defined release and 
+offers a build script to ease in building a "pbdR environment".
+  * Initial release.
