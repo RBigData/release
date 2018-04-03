@@ -34,6 +34,9 @@ build_package = function(pkg, configure.args=NULL, lib=lib)
 
 build_packages = function(PACKAGES)
 {
+  if (length(PACKAGES) == 1 && PACKAGES == "")
+    invisible(TRUE)
+  
   PACKAGES = strsplit(PACKAGES, split=" ")[[1]]
   ret = lapply(PACKAGES, function(pkg) build_package(pkg))
   invisible(TRUE)
@@ -66,7 +69,7 @@ pbd_builder = function(pkgs)
     mpi.configure.args = set_config_args(mpi.include=mpi.include, mpi.libpath=mpi.libpath, mpi.type=mpi.type)
     build_package("pbdMPI", configure.args=mpi.configure.args)
     
-    PACKAGES = "pbdSLAP pbdBASE pbdDMAT pbdDEMO pbdML pmclust kazaam tasktools"
+    PACKAGES = "pbdSLAP pbdBASE pbdDMAT pbdDEMO pbdIO pbdML pmclust kazaam tasktools"
   }
   else if (pkgs == "prof")
   {
@@ -99,8 +102,6 @@ pbd_builder = function(pkgs)
     
     adios.configure.args = set_config_args(adios.home=adios.home)
     build_package("pbdADIOS", configure.args=adios.configure.args)
-    
-    PACKAGES = "pbdIO"
   }
   else
     stop("invalid argument to build script")
