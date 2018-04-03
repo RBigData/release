@@ -38,7 +38,7 @@ build_docs = function(root_path, release_path)
   {
     pkg.name = strsplit(pkg, split="_")[[1]][1]
     system(paste0("tar zxf ", pkg, " ", pkg.name, "/man"))
-    tools::Rcmd(paste0("Rd2pdf ", pkg.name, " --title=\"", pkg.name, "\" --no-preview -o ", pkg.name, ".pdf"))
+    tools::Rcmd(paste0("Rd2pdf ", pkg.name, " --title=\"", pkg.name, "\" --no-preview -o ", pkg.name, ".pdf  > /dev/null"))
   }
   
   system("mv *.pdf ../docs")
@@ -64,19 +64,19 @@ complete_readme = function(root_path, release_path, version, date)
 
 complete_notes = function(root_path, release_path)
 {
-  # pkgs = read.table(paste0(root_path, "/assets/spec.in"), sep=" ", header=TRUE, stringsAsFactors=FALSE)$Package
-  # versions = lapply(paste0(release_path, "/src/", pkgs), get_version_from_tgz)
+  pkgs = read.table(paste0(root_path, "/assets/spec.in"), sep=" ", header=TRUE, stringsAsFactors=FALSE)$Package
+  versions = lapply(dir(paste0(release_path, "/src/")), get_version_from_tgz)
   
-  # notes = readLines(paste0(root_path, "/assets/RELEASE.in"))
+  notes = readLines(paste0(root_path, "/assets/RELEASE.in"))
   
-  # for (pkg in pkgs)
-  # {
-    
-  #   notes = sub(notes, pattern="\\{VERSION\\}", replacement=date)
-    
-  # }
+  for (i in 1:length(pkgs))
+  {
+    pkg = pkgs[i]
+    ind = grep(pkg, notes)
+    notes[ind] = sub(notes[ind], pattern="\\{VERSION\\}", replacement=versions[i])
+  }
   
-  # cat(notes, file=paste0(release_path, "/RELEASE"), sep="\n")
+  cat(notes, file=paste0(release_path, "/RELEASE"), sep="\n")
   
   TRUE
 }
@@ -150,7 +150,7 @@ make_src_dist = function(path=".", version, date=format(Sys.Date(), "%B %d %Y"),
   vprint("ok!\n", verbose)
   
   vprint("getting source packages...", verbose)
-  get_packages(root_path, release_path)
+  # get_packages(root_path, release_path)
   vprint("ok!\n", verbose)
   
   vprint("building documentation...", verbose)

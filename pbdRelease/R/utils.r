@@ -21,8 +21,8 @@ find_root = function(path)
 
 get_version_from_tgz = function(tgz)
 {
-  split = strsplit(tgz, split="(/|_)")[[1]]
-  split[length(split)]
+  split = strsplit(tgz, split="_")[[1]]
+  gsub(split[2], pattern=".tar.gz", replacement="", fixed=TRUE)
 }
 
 
