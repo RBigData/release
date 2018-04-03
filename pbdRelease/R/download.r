@@ -7,7 +7,7 @@ read_spec_file = function(root_path)
 
 check_if_pkg_downloaded = function(dl_path, pkg)
 {
-  length(dir(dl_path, pattern=paste0(pkg, "*"))) == 1
+  length(dir(dl_path, pattern=paste0(pkg, "_*"))) == 1
 }
 
 
@@ -29,7 +29,7 @@ download_gh = function(root_path, dl_path, pkg)
   curl::curl_download(tarball_url, destfile=destfile)
   
   system(paste("tar zxf", destfile, "-C", destdir, "--strip-components 1"))
-  tools::Rcmd(paste("build", destdir, "--no-build-vignettes"))
+  tools::Rcmd(paste("build", destdir, "--no-build-vignettes > /dev/null"))
   
   file.remove(destfile)
   pkg_file = dir(root_path, pattern="*.tar.gz")
