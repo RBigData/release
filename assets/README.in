@@ -62,9 +62,9 @@ troubleshooting, see the problem package's vignette.
 Licenses and Copying
 ====================
 
-pbdR packages are released under a variety of open source licenses.  Generally
-we try remain at least somewhat permissive, but some pbdR packages are derived
-from other less permissively licensed packages.
+pbdR packages are released under a variety of open source licenses.
+Generally we try to remain at least somewhat permissive, but some pbdR
+packages are derived from other less permissively licensed packages.
 
 The individual packages are licensed under the following licenses:
 
@@ -99,7 +99,7 @@ MPL 2.0:
 Copies of each of these license can be found in the 'licenses/' subtree.
 
 Additionally, we use several other packages themselves subject to a variety of
-licenses. If you are using the package builder, it will automatically handle
+licenses. If you are using the package builder, it will handle
 dependency resolution, installing these automatically. However, these licenses
 are available with their respective package source/binary distribution(s) on
 CRAN.
@@ -126,7 +126,7 @@ A special thanks to all of our users.
 Grant support 
 
 * Division of Mathematical Sciences, National Science Foundation, Award No.
-  1418195, 2014-2017.
+  1418195, 2014-2018.
 * Google Summer of Code, 2013-2014.
 * The National Institute for Mathematical and Biological Synthesis, under Award
   No. EF-0832858 and DBI-1300426, 2013-2014.
