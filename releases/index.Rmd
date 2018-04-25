@@ -1,0 +1,45 @@
+# Releases
+
+```{r, results='asis', echo=FALSE}
+
+update_meta = function(version)
+{
+  update_meta_file = function(version, file)
+  {
+    cmd = paste0("tar zxf pbdR_${", version, "}.tar.gz pbdR_${", version, "}/", file)
+    system(cmd, intern=FALSE)
+  }
+  
+  update_meta_file(version, "CHANGELOG")
+  update_meta_file(version, "README")
+  update_meta_file(version, "RELEASE")
+  
+  invisible()
+}
+
+releases = dir(pattern="*.tar.gz")
+releases = releases[-grep(releases, pattern="1.0-0", fixed=TRUE)]
+
+for (r in releases){
+  version = pbdRelease:::get_version_from_tgz(r)
+  system(paste("./udmeta", version), intern=FALSE)
+  
+  metadir = paste0("pbdR_", version)
+  metafiles = dir(metadir)
+  
+  tmp = readLines(paste0(metadir, "/README"), n=10)
+  date_pattern = "Released on "
+  date = strsplit(tmp[grep(tmp, pattern=date_pattern)], split=date_pattern)[[1]][2]
+  date = gsub(date, pattern=".", replacement="", fixed=TRUE)
+  date = format(as.Date(date, "%B %d %Y"), "%m/%d/%y")
+  
+  cat(paste0("* ", date, " [pbdR_", version, ".tar.gz](pbdR_", version, ".tar.gz)\n"))
+  
+  for (mf in metafiles){
+    cat(paste0("    - [", mf, "](", metadir, "/", mf, ")\n"))
+  }
+}
+```
+
+<!-- Treat the initial release separate since some pieces were missing -->
+* 03/05/2018 [pbdR_1.0-0.tar.gz](pbdR_1.0-0.tar.gz)

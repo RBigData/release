@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#pandoc index.md -o index.html
+Rscript -e "rmarkdown::render('index.Rmd')"
