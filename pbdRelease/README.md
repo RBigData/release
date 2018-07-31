@@ -13,8 +13,5 @@ If you aren't part of the pbdR core team, this probably doesn't interest you.
 ## Installation
 
 ```r
-### Pick your preference
-devtools::install_github("RBigData/pbdRelease")
-ghit::install_github("RBigData/pbdRelease")
 remotes::install_github("RBigData/pbdRelease")
 ```
